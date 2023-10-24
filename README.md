@@ -1,6 +1,8 @@
 # Datenkompetenz_HS2023
 Jupyter Notebooks zur Vorlesung Datenkompetenz 2. Beispiele für die Visualisierung öffentlich zugänglicher Datensätze mit Python/Jupyter Notebooks.
 
+Verwendete Python Version: 3.9 oder höher
+
 Für die Beispiele werden generell NumPy, MatPlotLib und Jupyter (für Notebooks) benötigt.
 
 Die Module können über Conda/Anaconda installiert werden.
