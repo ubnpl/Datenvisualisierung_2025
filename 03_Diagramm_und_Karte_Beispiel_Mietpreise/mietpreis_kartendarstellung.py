@@ -24,14 +24,14 @@
 
 # #### Modul Pandas importieren
 
-# In[1]:
+# In[66]:
 
 
 #Pandas importieren
 import pandas as pd
 
 
-# In[2]:
+# In[67]:
 
 
 from pandas import ExcelWriter
@@ -42,7 +42,7 @@ from pandas import ExcelFile
 # 
 # Details zum Einlesen des Datenfiles sind im Notebook "Visualisierung mit Histogrammen..." erklärt
 
-# In[3]:
+# In[68]:
 
 
 # Zweite Seite mit überspringen der Definierten Reihen einlesen
@@ -50,7 +50,7 @@ from pandas import ExcelFile
 df1s = pd.read_excel('je-d-09.03.03.01.xlsx', sheet_name="2020", header=4, skiprows=[32,33,34,35,36,37,38,39,40,41,42])
 
 
-# In[4]:
+# In[69]:
 
 
 df1s
@@ -64,7 +64,7 @@ df1s
 # 
 # Matplotlib wird weitering benötigt.
 
-# In[5]:
+# In[70]:
 
 
 # Matplotlib zum erstellen der Grafiken
@@ -79,7 +79,7 @@ import matplotlib.pyplot as plt
 #     
 #     conda install geopandas
 
-# In[6]:
+# In[71]:
 
 
 # Geopandas importieren
@@ -101,7 +101,7 @@ import geopandas as gpd
 
 # ## Geodaten Visualisieren: Kartendarstellung von .geojson-Files
 
-# In[7]:
+# In[72]:
 
 
 # GeoJson-file mit GeoPandas importieren und anzeigen
@@ -114,7 +114,7 @@ geo_df.head()
 # 
 # Das .geojson-File enthält Informationen zu Kantonen und Kantonsgrenzen; diese können visualisiert werden.
 
-# In[8]:
+# In[73]:
 
 
 # basic map plot
@@ -129,7 +129,7 @@ plt.show()
 # 
 # Zusätzlich entählt das .geojson-File Informationen zur Einwohnerzahl und anderen Kenndaten der Kantone. Die Einwohnerzahl kann als Heatmap auf der Karte angezeigt werden.
 
-# In[9]:
+# In[74]:
 
 
 # Karte mit Kantonsgrenze; Einwohnerzahl als Heatmap
@@ -141,7 +141,7 @@ plt.show()
 
 # ## Geodatenfile Analysieren und Kantonsnamen den Namen im Mietpreis-File zuordnen
 
-# In[10]:
+# In[75]:
 
 
 # Anzahl Zeilen im Geodatensatz anzeigen
@@ -150,14 +150,14 @@ geo_df.shape
 
 # Im Geodatensatz sind mehr Zeilen als Kantone (für viele Kantone sind meherere Einträge enthalten). Um die Kantonsnamen zu vergleichen sollte für jeden Kanton nur ein Eintrag vorhanden sein. Dies kann hier durch weglassen aller Zeilen mit Kantonsfläche 'nan' (not a number) erreicht werden, da dann nur der Haupteintrag für jeden Kanton ausgewählt wird.
 
-# In[11]:
+# In[76]:
 
 
 # Neuen Dataframe erstellen ohne Einträge mit geo_df['KANTONSFLA'] = nan 
 geo_notna = geo_df[geo_df['KANTONSFLA'].notna()]
 
 
-# In[12]:
+# In[77]:
 
 
 geo_notna.shape
@@ -165,11 +165,11 @@ geo_notna.shape
 
 # Wir haben jetzt in geo_notna für jeden Kanton einen Eintrag gespeichert und können ihn anzeigen lassen:
 
-# In[13]:
+# In[78]:
 
 
 # Vergleich der Kantonsnamen nach Index in beiden sortierten Dataframes
-for item in geo_df['NAME']:
+for item in geo_notna['NAME']:
     print(item)
 
 
@@ -181,24 +181,25 @@ for item in geo_df['NAME']:
 # Die Zuordnung kann auf verschiedene Arten gelöst werden, z.B. auch mithilfe eines Übersetzungsmoduls. Diese Lösung hier ist sehr einfach, aber nicht systematisch.
 
 # #### Sortieren der Kantonsnamen und Übersetzung für die richtige Zuordnung der Einträge
+# Für das sortieren steht in Pandas/Geopandas die Funktion sort_values() zur Verfügung. Die Funktionalität ist analog der sort_values-Funktion in Pandas:
 # 
-# Für das sortieren steht in Pandas/Geopandas die Funktion sort_values() zur Verfügung.
+# https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.sort_values.html
 
-# In[14]:
+# In[79]:
 
 
 # Sortieren der Geodaten nach Kantonsnamen
 geo_sort = geo_notna.sort_values('NAME',ignore_index=True)
 
 
-# In[15]:
+# In[80]:
 
 
 # Sortieren der Mietpreise nach Kantonsnamen und Weglassen des Eintrags für die Schweiz
 df1s_sorted = df1s[1:].sort_values('Unnamed: 0',ignore_index=True)
 
 
-# In[16]:
+# In[81]:
 
 
 # Vergleich der Kantonsnamen nach Index in beiden sortierten Dataframes
@@ -208,54 +209,53 @@ for num in range(df1s_sorted.shape[0]):
 
 # Die Indices der Kantone stimmen in vier Fällen nicht überein. Dies kann gelöst werden, wenn zwei der Namen ersetzt werden und anschliessend nochmals sortiert wird. 
 
-# In[17]:
+# In[82]:
 
 
 # Ersetzung Nr. 1
 df1s_r = df1s_sorted.replace({'Unnamed: 0': {'Wallis': 'Valais'}})
 
 
-# In[18]:
+# In[83]:
 
 
 # Ersetzung Nr. 2
 df1sr = df1s_r.replace({'Unnamed: 0': {'Tessin': 'Ticino'}})
 
 
-# In[19]:
+# In[84]:
 
 
 # Neue sortierung
 df1sr_sorted = df1sr.sort_values('Unnamed: 0',ignore_index=True)
 
 
-# In[20]:
+# In[85]:
 
 
 df1sr_sorted.shape
 
 
-# In[21]:
+# In[86]:
 
 
 # Überprüfen der Entsprechung und Speichern der entsprechenden Indices in der Liste m_kanton
 m_kanton = []
-for num in range(df1sr_sorted.shape[0]):
-    print(num, geo_sort['NAME'][num],"\t", df1sr_sorted['Unnamed: 0'][num], df1sr_sorted['Durch-schnittlicher Mietpreis '][num])
-    #m_kanton.append([geo_sort['NAME'][num],df1sr_sorted['Durch-schnittlicher Mietpreis '][num]])
-    m_kanton.append(geo_sort['NAME'][num])
+for num in range(df1sr_sorted.shape[0]): # Ausgabe der Kantonsnamen in beiden Listen  und Mietpreis
+    print(num,'\t\t', geo_sort['NAME'][num],' : ', df1sr_sorted['Unnamed: 0'][num], '\t\t\t\t\t', df1sr_sorted['Durch-schnittlicher Mietpreis '][num]) 
+    m_kanton.append(geo_sort['NAME'][num]) # Index speichern
 
 
 # Die Kantonsnamen sind nun in beiden Listen gleich geordnet. Dadurch kann jeder Eintrag einem Kanton zugeordnet und entsprechend dargestellt werden. Die Zuordnung ist als Indes in der Liste m_kanton gespeichert
 
-# In[22]:
+# In[87]:
 
 
 # Index eines Kantons ausgeben lassen
 m_kanton.index('Zug')
 
 
-# In[23]:
+# In[88]:
 
 
 # Mietpreis eines Kantons ausgeben lassen
@@ -266,7 +266,7 @@ df1sr_sorted['Durch-schnittlicher Mietpreis '][m_kanton.index('Zug')]
 # 
 # Für die Visualisierung der Mietpreise wird eine Liste mit dem Mietpreis für jeden Kanton im ursprünglichen Dataframe geo_df erstellt. 
 
-# In[24]:
+# In[89]:
 
 
 # Mietpreis für jeden Kanton im Geodatenframe nach Namen auswählen und in der Liste miet_geo speichern
@@ -277,14 +277,14 @@ for item in geo_df['NAME']:
 #miet_geo
 
 
-# In[25]:
+# In[90]:
 
 
 # Transformieren der Liste in ein Dataframe
 df_miet_geo = pd.DataFrame(miet_geo,columns =['Miete'])
 
 
-# In[26]:
+# In[91]:
 
 
 # Karte mit Kantonsgrenze; Einwohnerzahl als Heatmap
