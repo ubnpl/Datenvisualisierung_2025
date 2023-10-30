@@ -167,7 +167,7 @@ plt.xlabel('Datum')
 plt.show()
 
 
-# ## 3. Vergleich zweier Energieträger: Scatterplot und Korrelationkoeffizient
+# ## 3. Vergleich zweier Energieträger: Scatterplot, lineare Regression und Korrelationkoeffizient
 # 
 # Die Korrelation zweier Zeitreihen kann visualisiert werden, indem man die Zeitreihen in einem Scatterplot gegeneinander aufträgt. Beispiel hier: Stromproduktion aus Flusskraft gegen Stromproduktion aus Photovoltaik. Als erstes visulalisieren wir beide Zeitreihen im gleichen Plot.
 
@@ -224,7 +224,9 @@ plt.show()
 
 # ### Lineare Regression
 # 
-# Die Korrelation der beiden Datensätze kann anhand der linearen Regression visualisiert werden. Zur Berechnung der Regression wird Numpy verwendet.
+# Die Korrelation der beiden Datensätze kann anhand der linearen Regression visualisiert werden. Zur Berechnung der Regression wird die Funktion numpy.polyfit() verwendet:
+# 
+# https://numpy.org/doc/stable/reference/generated/numpy.polyfit.html
 
 # In[13]:
 
@@ -233,17 +235,22 @@ plt.show()
 import numpy as np
 
 
+# Linearen Regression mit least squares mit np.polyfit() Das Resultat ist die Steigung (b) und Achsenabschitt (a) der Regressionslinie. Der Grad des Polynoms wird über deg=1 (linear) festgelegt.
+
 # In[14]:
 
 
-plt.figure().set_figheight(5)
-plt.figure().set_figwidth(10)
-plt.scatter(df_fluss_red, df_photo_red, s=10, alpha=0.6, edgecolors="k") # Scatterplot Flusskrft gegen Photovoltaik
-
-# Fitten der linearen Regression mit least squares with numpy.polyfit
-# Resultat: Steigung (b) und Achsenabschitt (a)
-# deg=1 ist der Grad des Polynoms für den Fit
+# Fitten der linearen Regression mit least squares with np.polyfit
 b, a = np.polyfit(df_fluss_red, df_photo_red, deg=1)
+print('b = ', b, '\ta =', a)
+
+
+# In[15]:
+
+
+plt.figure().set_figheight(5) # Breite
+plt.figure().set_figwidth(10) # Höhe
+plt.scatter(df_fluss_red, df_photo_red, s=10, alpha=0.6, edgecolors="k") # Scatterplot Flusskrft gegen Photovoltaik
 
 # Sequenz der Zahlen von 10 bis 105 generieren (für Darstellung)
 xseq = np.linspace(10, 105, num=100)
@@ -270,7 +277,7 @@ plt.show()
 # 
 # https://numpy.org/doc/stable/reference/generated/numpy.corrcoef.html
 
-# In[15]:
+# In[16]:
 
 
 # Korrelationsmatrix berechnen
@@ -278,10 +285,4 @@ r = np.corrcoef(df_fluss_red, df_photo_red)
 
 # Nicht-diagonale Elemente der Korrelationsmatrix ausgeben
 print("Korrelationskoeffizient = ", r[0,1]) 
-
-
-# In[ ]:
-
-
-
 
