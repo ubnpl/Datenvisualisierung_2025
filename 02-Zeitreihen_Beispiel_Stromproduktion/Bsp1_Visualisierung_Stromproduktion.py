@@ -86,10 +86,14 @@ for en in df['Energietraeger']:
 print('Liste der Energieträger: \n', Energiearten) # Liste ausgeben
 
 
+# Um alle Datenpunkte eines Energieträgers auszuwählen kann die Eigenschaft pandas.DataFrame.loc verwendet werden:
+# 
+# https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.loc.html
+
 # In[7]:
 
 
-# Einen bestimmten Energieträger auswählen und in neuem Dataframe speichern
+# Mit df.loc alle Einträge für einen bestimmten Energieträger auswählen und in neuem Dataframe speichern
 df_fluss = df.loc[df['Energietraeger'] == 'Flusskraft']
 df_kern = df.loc[df['Energietraeger'] == 'Kernkraft']
 df_speicher = df.loc[df['Energietraeger'] == 'Speicherkraft']
@@ -228,7 +232,7 @@ plt.xlabel('Datum')
 plt.show()
 
 
-# Um die Daten besser vergleichen zu können werden die Achsen zur Visualisierung angeglichen.
+# Um die Zeitreihen besser vergleichen zu können werden die x- und y- Achsen zur Visualisierung angeglichen.
 
 # In[13]:
 
