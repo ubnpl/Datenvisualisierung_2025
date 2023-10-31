@@ -207,7 +207,7 @@ plt.xlabel('Kanton') # Beschriftung x-Achse
 plt.ylabel('Durchschnittlicher Mietpreis [CHF]')  # Beschriftung y-Achse
 plt.legend(['2-Zimmer', '6-Zimmer']) # Datensätze beschriften 
 
-plt.title("Visualisierung 3: Mietpreise nach Wohnungsgrösse und Kanton Darstellung nebeneinander") # Titel der Grafik
+plt.title("Visualisierung 3: Mietpreise nach Wohnungsgrösse und Kanton; Darstellung nebeneinander") # Titel der Grafik
 
 plt.savefig('Histogram_2b.png', bbox_inches='tight') # Grafik als .png speichern
 plt.show()
