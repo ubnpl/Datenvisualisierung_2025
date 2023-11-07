@@ -10,7 +10,7 @@
 #     conda install scipy
 # 
 
-# ## 1. Visulalisierung einfacher Funktionen
+# ## 1. Visualisierung einfacher Funktionen
 
 # #### Module für Teil 1 importieren
 # 
