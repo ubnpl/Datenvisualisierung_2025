@@ -24,14 +24,14 @@
 
 # #### Modul Pandas importieren
 
-# In[66]:
+# In[1]:
 
 
 #Pandas importieren
 import pandas as pd
 
 
-# In[67]:
+# In[2]:
 
 
 from pandas import ExcelWriter
@@ -42,7 +42,7 @@ from pandas import ExcelFile
 # 
 # Details zum Einlesen des Datenfiles sind im Notebook "Visualisierung mit Histogrammen..." erklärt
 
-# In[68]:
+# In[3]:
 
 
 # Zweite Seite mit überspringen der Definierten Reihen einlesen
@@ -50,13 +50,13 @@ from pandas import ExcelFile
 df1s = pd.read_excel('je-d-09.03.03.01.xlsx', sheet_name="2020", header=4, skiprows=[32,33,34,35,36,37,38,39,40,41,42])
 
 
-# In[69]:
+# In[4]:
 
 
 df1s
 
 
-# ## Visualtisierung der Daten auf einer Karte
+# ## Visualisierung der Daten auf einer Karte
 # 
 # Die Mietpreise der Schweiz werden auf einer Schweizer Karte angezeigt. Dazu ist die Kombination mit entsprechende Geodaten notwendig.
 
@@ -64,7 +64,7 @@ df1s
 # 
 # Matplotlib wird weitering benötigt.
 
-# In[70]:
+# In[5]:
 
 
 # Matplotlib zum erstellen der Grafiken
@@ -79,7 +79,7 @@ import matplotlib.pyplot as plt
 #     
 #     conda install geopandas
 
-# In[71]:
+# In[6]:
 
 
 # Geopandas importieren
@@ -101,7 +101,7 @@ import geopandas as gpd
 
 # ## Geodaten Visualisieren: Kartendarstellung von .geojson-Files
 
-# In[72]:
+# In[7]:
 
 
 # GeoJson-file mit GeoPandas importieren und anzeigen
@@ -114,7 +114,7 @@ geo_df.head()
 # 
 # Das .geojson-File enthält Informationen zu Kantonen und Kantonsgrenzen; diese können visualisiert werden.
 
-# In[73]:
+# In[8]:
 
 
 # basic map plot
@@ -129,7 +129,7 @@ plt.show()
 # 
 # Zusätzlich entählt das .geojson-File Informationen zur Einwohnerzahl und anderen Kenndaten der Kantone. Die Einwohnerzahl kann als Heatmap auf der Karte angezeigt werden.
 
-# In[74]:
+# In[9]:
 
 
 # Karte mit Kantonsgrenze; Einwohnerzahl als Heatmap
@@ -141,7 +141,7 @@ plt.show()
 
 # ## Geodatenfile Analysieren und Kantonsnamen den Namen im Mietpreis-File zuordnen
 
-# In[75]:
+# In[10]:
 
 
 # Anzahl Zeilen im Geodatensatz anzeigen
@@ -150,14 +150,14 @@ geo_df.shape
 
 # Im Geodatensatz sind mehr Zeilen als Kantone (für viele Kantone sind meherere Einträge enthalten). Um die Kantonsnamen zu vergleichen sollte für jeden Kanton nur ein Eintrag vorhanden sein. Dies kann hier durch weglassen aller Zeilen mit Kantonsfläche 'nan' (not a number) erreicht werden, da dann nur der Haupteintrag für jeden Kanton ausgewählt wird.
 
-# In[76]:
+# In[11]:
 
 
 # Neuen Dataframe erstellen ohne Einträge mit geo_df['KANTONSFLA'] = nan 
 geo_notna = geo_df[geo_df['KANTONSFLA'].notna()]
 
 
-# In[77]:
+# In[12]:
 
 
 geo_notna.shape
@@ -165,7 +165,7 @@ geo_notna.shape
 
 # Wir haben jetzt in geo_notna für jeden Kanton einen Eintrag gespeichert und können ihn anzeigen lassen:
 
-# In[78]:
+# In[13]:
 
 
 # Vergleich der Kantonsnamen nach Index in beiden sortierten Dataframes
@@ -185,21 +185,21 @@ for item in geo_notna['NAME']:
 # 
 # https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.sort_values.html
 
-# In[79]:
+# In[14]:
 
 
 # Sortieren der Geodaten nach Kantonsnamen
 geo_sort = geo_notna.sort_values('NAME',ignore_index=True)
 
 
-# In[80]:
+# In[15]:
 
 
 # Sortieren der Mietpreise nach Kantonsnamen und Weglassen des Eintrags für die Schweiz
 df1s_sorted = df1s[1:].sort_values('Unnamed: 0',ignore_index=True)
 
 
-# In[81]:
+# In[16]:
 
 
 # Vergleich der Kantonsnamen nach Index in beiden sortierten Dataframes
@@ -209,34 +209,34 @@ for num in range(df1s_sorted.shape[0]):
 
 # Die Indices der Kantone stimmen in vier Fällen nicht überein. Dies kann gelöst werden, wenn zwei der Namen ersetzt werden und anschliessend nochmals sortiert wird. 
 
-# In[82]:
+# In[17]:
 
 
 # Ersetzung Nr. 1
 df1s_r = df1s_sorted.replace({'Unnamed: 0': {'Wallis': 'Valais'}})
 
 
-# In[83]:
+# In[18]:
 
 
 # Ersetzung Nr. 2
 df1sr = df1s_r.replace({'Unnamed: 0': {'Tessin': 'Ticino'}})
 
 
-# In[84]:
+# In[19]:
 
 
 # Neue sortierung
 df1sr_sorted = df1sr.sort_values('Unnamed: 0',ignore_index=True)
 
 
-# In[85]:
+# In[20]:
 
 
 df1sr_sorted.shape
 
 
-# In[86]:
+# In[21]:
 
 
 # Überprüfen der Entsprechung und Speichern der entsprechenden Indices in der Liste m_kanton
@@ -248,14 +248,14 @@ for num in range(df1sr_sorted.shape[0]): # Ausgabe der Kantonsnamen in beiden Li
 
 # Die Kantonsnamen sind nun in beiden Listen gleich geordnet. Dadurch kann jeder Eintrag einem Kanton zugeordnet und entsprechend dargestellt werden. Die Zuordnung ist als Indes in der Liste m_kanton gespeichert
 
-# In[87]:
+# In[22]:
 
 
 # Index eines Kantons ausgeben lassen
 m_kanton.index('Zug')
 
 
-# In[88]:
+# In[23]:
 
 
 # Mietpreis eines Kantons ausgeben lassen
@@ -266,7 +266,7 @@ df1sr_sorted['Durch-schnittlicher Mietpreis '][m_kanton.index('Zug')]
 # 
 # Für die Visualisierung der Mietpreise wird eine Liste mit dem Mietpreis für jeden Kanton im ursprünglichen Dataframe geo_df erstellt. 
 
-# In[89]:
+# In[24]:
 
 
 # Mietpreis für jeden Kanton im Geodatenframe nach Namen auswählen und in der Liste miet_geo speichern
@@ -277,14 +277,14 @@ for item in geo_df['NAME']:
 #miet_geo
 
 
-# In[90]:
+# In[25]:
 
 
 # Transformieren der Liste in ein Dataframe
 df_miet_geo = pd.DataFrame(miet_geo,columns =['Miete'])
 
 
-# In[91]:
+# In[26]:
 
 
 # Karte mit Kantonsgrenze; Einwohnerzahl als Heatmap
