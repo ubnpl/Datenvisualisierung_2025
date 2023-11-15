@@ -54,7 +54,7 @@ df
 
 # #### Struktur der Dataframes
 # 
-# Datenstruktur: Dicitionnary; die Spalten des CSV-files sind über Keys() zugänglich
+# Datenstruktur: Dictionnary; die Spalten des CSV-files sind über Keys() zugänglich
 
 # In[4]:
 
