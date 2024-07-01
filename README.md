@@ -1,4 +1,4 @@
-# Datenkompetenz_HS2023
+# Datenkompetenz_2024
 Jupyter Notebooks zur Vorlesung Datenkompetenz 2. Beispiele für die Visualisierung öffentlich zugänglicher Datensätze mit Python/Jupyter Notebooks.
 
 Verwendete Python Version: 3.9 oder höher
