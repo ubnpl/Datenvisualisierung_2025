@@ -6,8 +6,8 @@
 # ## Datenbeispiel: Durchschnittlicher Mietpreis nach Zimmerzahl und Kanton
 # 
 # Datenquelle: Bundesamt für Statistik
-# Webseite Datensatz: https://opendata.swiss/de/dataset/durchschnittlicher-mietpreis-in-franken-nach-zimmerzahl-und-kanton3
-# Datum Download: 12.10.2023
+# Webseite Datensatz: https://opendata.swiss/de/dataset/durchschnittlicher-mietpreis-in-franken-nach-zimmerzahl-und-kanton2
+# Datum Download: 06.08.2024
 # 
 # Format: Microsoft Excel (.xlsx)
 
@@ -47,7 +47,7 @@ from pandas import ExcelFile
 
 # Zweite Seite mit überspringen der Definierten Reihen einlesen
 # Uebersprungene Reihen definieren mit "Skiprows"
-df1s = pd.read_excel('je-d-09.03.03.01.xlsx', sheet_name="2020", header=4, skiprows=[32,33,34,35,36,37,38,39,40,41,42])
+df1s = pd.read_excel('je-d-09.03.03.01.xlsx', sheet_name="2021", header=4, skiprows=[32,33,34,35,36,37,38,39,40,41,42])
 
 
 # In[4]:
@@ -94,7 +94,7 @@ import geopandas as gpd
 # 
 # Die zur Verfügung gestellten .shp-files können zu .geojson konvertiert werden. Dazu wird das tool 'ogr2ogr' in der commandline mit folgendem Befehl aufgerufen:
 #     
-# ogr2ogr -f GeoJSON -t_srs EPSG:4326 -simplify 1000 switzerland.geojson swissBOUNDARIES3D_1_4_TLM_KANTONSGEBIET.shp
+# ogr2ogr -f GeoJSON -t_srs EPSG:4326 -simplify 1000 switzerland.geojson swissBOUNDARIES3D_1_5_TLM_KANTONSGEBIET.shp
 # 
 # Das tool 'ogr2ogr' ist teil GDAL-package https://pypi.org/project/GDAL/ die zusammen mit GeoPandas installiert wird.
 # 
