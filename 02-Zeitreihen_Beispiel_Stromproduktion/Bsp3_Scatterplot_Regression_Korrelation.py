@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # Beispiel Stromproduktion 2: Scatterplot, Regression, Korrelation
+# # Beispiel Stromproduktion 3: Scatterplot, Regression, Korrelation
 # 
 # ### Datenvisualisierung mit Python/Matplotlib
 

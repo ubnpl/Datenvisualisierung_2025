@@ -1,9 +1,11 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # Beispiel Stromproduktion 1: Visualisierung Stromproduktion
+# # Beispiel 2: Visualisierung Stromproduktion verschiedener Energieträgern
 # 
 # ### Datenvisualisierung mit Python/Matplotlib
+# 
+# Die Daten in diesem Beispiel müssen zuerst in verschiedene Zeitreihen nach Stromerzeugungsmethode gruppiert werden.
 
 # ### Datenbeispiel: Stromproduktion in der Schweiz
 # 
