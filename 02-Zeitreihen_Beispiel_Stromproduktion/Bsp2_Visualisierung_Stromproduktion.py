@@ -12,7 +12,7 @@
 # Datenquelle: Bundesamt für Energie
 # Webseite: https://opendata.swiss/dataset/energiedashboard-ch-stromproduktion-swissgrid
 # 
-# Zeitpunkt der Abfrage: 11.09.2023
+# Zeitpunkt der Abfrage: 03.10.2024
 # 
 # Format: CSV (.csv)
 
@@ -243,7 +243,7 @@ plt.show()
 f, axs = plt.subplots(6,1, figsize=(15, 20)) # Definieren der Subplots
 
 lx1 = '2016-01-01' # unteres Limit x-Achse
-lx2 = '2023-10-01' # oberes Limit y-Achse
+lx2 = '2024-08-01' # oberes Limit x-Achse
 ly1 = -10.0   # unteres Limit y-Achse
 ly2 = 160.0 # oberes Limit y-Achse
 

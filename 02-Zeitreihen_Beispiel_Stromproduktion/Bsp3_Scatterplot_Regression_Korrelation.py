@@ -10,7 +10,7 @@
 # Datenquelle: Bundesamt für Energie
 # Webseite: https://opendata.swiss/dataset/energiedashboard-ch-stromproduktion-swissgrid
 # 
-# Zeitpunkt der Abrfrage: 11.09.2023
+# Zeitpunkt der Abrfrage: 03.10.2024
 # 
 # Format: CSV (.csv)
 
@@ -174,18 +174,18 @@ plt.show()
 # In[10]:
 
 
-# Matplotlib subplots
+## Matplotlib subplots
 f, axs = plt.subplots(1,1, figsize=(12, 8))
 
 lx1 = '2015-01-01' # unteres Limit x-Achse
-lx2 = '2023-10-01' # oberes Limit y-Achse
+lx2 = '2024-08-01' # oberes Limit y-Achse
 ly1 = -2.0   # unteres Limit y-Achse
 ly2 = 110.0 # oberes Limit y-Achse
 
 plt.subplot(1, 1, 1)
 plt.plot(df_fluss['Datum'],df_fluss['Produktion_GWh'])
 plt.plot(df_photo['Datum'],df_photo['Produktion_GWh'])
-plt.xticks(df_fluss['Datum'][0::400])
+plt.xticks(df_fluss['Datum'][0::450])
 plt.xlim(lx1,lx2)
 plt.ylim(ly1,ly2)
 plt.legend(['Flusskraft','Photovoltaik']) # Beschriftung der Datensätze
@@ -203,8 +203,8 @@ plt.show()
 
 
 # Neue Arrays erzeugen
-df_photo_red = df_photo['Produktion_GWh'][-(3000-len(df_photo)):]
-df_fluss_red = df_fluss['Produktion_GWh'][-(3000-len(df_fluss)):]
+df_photo_red = df_photo['Produktion_GWh'][-(3500-len(df_photo)):]
+df_fluss_red = df_fluss['Produktion_GWh'][-(3500-len(df_fluss)):]
 
 
 # ### Scatterplot zur Datenvisualisierung
