@@ -6,8 +6,8 @@
 # ## Datenbeispiel: Durchschnittlicher Mietpreis Schweiz nach Zimmerzahl und Kanton
 # 
 # Datenquelle: Bundesamt für Statistik
-# Webseite Datensatz: https://opendata.swiss/de/dataset/durchschnittlicher-mietpreis-in-franken-nach-zimmerzahl-und-kanton2
-# Datum Download: 06.08.2024
+# Webseite Datensatz: https://opendata.swiss/de/dataset/durchschnittlicher-mietpreis-in-franken-nach-zimmerzahl-und-kanton3
+# Datum Download: 28.07.2025
 # 
 # Format: Microsoft Excel (.xlsx)
 
@@ -66,7 +66,7 @@ df
 
 
 # Zweite Seite des Excel-Files mit Namen "2020" einlesen
-df2 = pd.read_excel('je-d-09.03.03.01.xlsx', sheet_name="2021", header=4)
+df2 = pd.read_excel('je-d-09.03.03.01.xlsx', sheet_name="2022", header=4)
 
 
 # In[6]:
@@ -82,7 +82,7 @@ df2
 
 # Zweite Seite mit überspringen der Definierten Reihen einlesen
 # Uebersprungene Reihen definieren mit "Skiprows"
-df1s = pd.read_excel('je-d-09.03.03.01.xlsx', sheet_name="2021", header=4, skiprows=[32,33,34,35,36,37,38,39,40,41,42])
+df1s = pd.read_excel('je-d-09.03.03.01.xlsx', sheet_name="2023", header=4, skiprows=[32,33,34,35,36,37,38,39,40,41,42])
 
 
 # In[8]:
@@ -153,7 +153,7 @@ plt.bar(df1s['Unnamed: 0'], df1s['Durch-schnittlicher Mietpreis '])  # Barplot e
 plt.xlabel('Kanton') # Beschriftung x-Achse
 plt.ylabel('Durchschnittlicher Mietpreis [CHF]')  # Beschriftung y-Achse
 
-plt.legend(['Mietpreis 2021']) # Datensatz beschriften
+plt.legend(['Mietpreis 2023']) # Datensatz beschriften
 plt.xticks(rotation=90) # Labels um 90 Grad drehen
 
 plt.title("Visualisierung 1: Durschnittlicher Mietpreis")

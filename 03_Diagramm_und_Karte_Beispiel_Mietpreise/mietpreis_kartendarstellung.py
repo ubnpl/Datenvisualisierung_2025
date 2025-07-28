@@ -7,7 +7,7 @@
 # 
 # Datenquelle: Bundesamt für Statistik
 # Webseite Datensatz: https://opendata.swiss/de/dataset/durchschnittlicher-mietpreis-in-franken-nach-zimmerzahl-und-kanton2
-# Datum Download: 06.08.2024
+# Datum Download: 28.07.2025
 # 
 # Format: Microsoft Excel (.xlsx)
 
@@ -47,7 +47,7 @@ from pandas import ExcelFile
 
 # Zweite Seite mit überspringen der Definierten Reihen einlesen
 # Uebersprungene Reihen definieren mit "Skiprows"
-df1s = pd.read_excel('je-d-09.03.03.01.xlsx', sheet_name="2021", header=4, skiprows=[32,33,34,35,36,37,38,39,40,41,42])
+df1s = pd.read_excel('je-d-09.03.03.01.xlsx', sheet_name="2023", header=4, skiprows=[32,33,34,35,36,37,38,39,40,41,42])
 
 
 # In[4]:
