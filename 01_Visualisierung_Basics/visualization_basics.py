@@ -5,7 +5,7 @@
 # 
 # Grundlagen der Datenvisualisierung mit Matplotlib: Einfache Visualisierung von Funktionen und Daten.
 # 
-# Die benötigten Pythonmodule sind in den meisten installation schon mit dabei; evtl. muss für Teil 2 Scipy dazu installiert werden. Installieren von Scipy mit Anaconda (im Anaconda Prompt (Windows) oder Terminal (Linux oder MacOS):
+# Die benötigten Pythonmodule numpy und matplotlib sind in den meisten Installation schon mit dabei; für Teil 2 muss Scipy dazu installiert werden. Installieren von Scipy mit Anaconda (im Anaconda Prompt (Windows) oder Terminal (Linux oder MacOS):
 # 
 #     conda install scipy
 # 
