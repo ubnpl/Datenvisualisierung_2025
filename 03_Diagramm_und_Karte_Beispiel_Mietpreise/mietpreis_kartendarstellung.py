@@ -6,7 +6,7 @@
 # ## Datenbeispiel: Durchschnittlicher Mietpreis nach Zimmerzahl und Kanton
 # 
 # Datenquelle: Bundesamt für Statistik
-# Webseite Datensatz: https://opendata.swiss/de/dataset/durchschnittlicher-mietpreis-in-franken-nach-zimmerzahl-und-kanton2
+# Webseite Datensatz: https://opendata.swiss/de/dataset/durchschnittlicher-mietpreis-in-franken-nach-zimmerzahl-und-kanton3
 # Datum Download: 28.07.2025
 # 
 # Format: Microsoft Excel (.xlsx)
